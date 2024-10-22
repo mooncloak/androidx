@@ -33,7 +33,7 @@ plugins {
 }
 
 repackage {
-    // Must match what is in health/health-services-client-external-protobuf/build.gradle
+    // Must match what is in health/health-services-client-external-protobuf/build.gradle.kts.kts.kts.kts.kts.kts.kts
     addRelocation {
         sourcePackage = "com.google.protobuf"
         targetPackage =  "androidx.health.services.client.proto"

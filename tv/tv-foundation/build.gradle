@@ -520,7 +520,7 @@ task doCopiesNeedUpdate {
             throw new GradleException(
                     "Files that were copied have been updated at the source. " +
                             "Please update the copy and then" +
-                            " update the hash in the compose-foundation build.gradle file." +
+                            " update the hash in the compose-foundation build.gradle.kts.kts.kts.kts.kts.kts.kts file." +
                             failureFiles.stream().collect(Collectors.joining("\n", "\n", "")) + "\ncount=${failureFiles.size()}")
         }
 

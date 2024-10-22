@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The Android Open Source Project
+ * Copyright 2019 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,35 +21,32 @@
  * Please use that script when creating a new project, rather than copying an existing project and
  * modifying its settings.
  */
-import androidx.build.LibraryType
+
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("AndroidXPlugin")
     id("com.android.library")
-    id("kotlin-android")
+    id("androidx.multiplatform")
+    id("androidx.publish")
 }
 
-android {
-    namespace "androidx.paging.runtime"
+kotlin {
+
 }
 
 dependencies {
-    api(project(":paging:paging-common"))
-    // Ensure that the -ktx dependency graph mirrors the Java dependency graph
-    api(project(":paging:paging-common-ktx"))
+    compileOnly(libs.androidLintApi)
+    compileOnly(libs.kotlinStdlib)
 
-    api("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    api("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
-    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    api("androidx.recyclerview:recyclerview:1.2.1")
-    api(libs.kotlinStdlib)
-    api(libs.kotlinCoroutinesAndroid)
-    implementation("androidx.core:core-ktx:1.7.0")
+    testImplementation(libs.kotlinStdlib)
+    testImplementation(libs.androidLint)
+    testImplementation(libs.androidLintTests)
+    testImplementation(libs.junit)
 }
 
 android {
     compileSdk = LibraryConstants.Android.compileSdkVersion
-    namespace = "androidx.paging-runtime"
+    namespace = "androidx.annotation.experimental.lint"
 
     defaultConfig {
         minSdk = LibraryConstants.Android.minSdkVersion
@@ -73,7 +70,7 @@ android {
             jvmTarget = "1.8"
             // Opt-in to experimental compose APIs
             freeCompilerArgs = listOf(
-                    "-Xopt-in=kotlin.RequiresOptIn"
+                "-Xopt-in=kotlin.RequiresOptIn"
             )
         }
     }

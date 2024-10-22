@@ -77,7 +77,7 @@ public class CarConnectionTypeLiveDataTest {
      * example the ProfileInstallReceiver which *may* be present, based on inclusion of
      * profileinstaller (for example, in CI when tested against TOT dependencies).
      * <p>
-     * To force its presence for local testing, add the following to car:app:app's build.gradle:
+     * To force its presence for local testing, add the following to car:app:app's build.gradle.kts.kts.kts.kts.kts.kts.kts:
      * <pre>implementation("androidx.profileinstaller:profileinstaller:1.2.1")</pre>
      */
     private ImmutableList<ShadowApplication.Wrapper> getFilteredRegisteredReceivers() {

@@ -436,7 +436,7 @@ function runGradle() {
     RETURN_VALUE=0
   else
     # Print AndroidX-specific help message if build fails
-    # Have to do this build-failure detection in gradlew rather than in build.gradle
+    # Have to do this build-failure detection in gradlew rather than in build.gradle.kts.kts.kts.kts.kts.kts.kts
     # so that this message still prints even if buildSrc itself fails
     echo
     echo For help with unexpected failures, see development/diagnose-build-failure/README.md

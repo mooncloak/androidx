@@ -25,7 +25,7 @@
  *
  * <p>Please check the <a
  * href="https://developer.android.com/jetpack/androidx/releases/webkit#declaring_dependencies">
- * release notes</a> for instructions to add the latest release to your {@code build.gradle} file.
+ * release notes</a> for instructions to add the latest release to your {@code build.gradle.kts.kts.kts.kts.kts.kts.kts} file.
  *
  * <p><b>Public bug tracker</b>
  *

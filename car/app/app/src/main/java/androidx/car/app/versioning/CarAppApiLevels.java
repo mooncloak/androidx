@@ -126,7 +126,7 @@ public final class CarAppApiLevels {
      */
     @CarAppApiLevel
     public static int getLatest() {
-        // The latest Car API level is defined as java resource, generated via build.gradle. This
+        // The latest Car API level is defined as java resource, generated via build.gradle.kts.kts.kts.kts.kts.kts.kts. This
         // has to be read through the class loader because we do not have access to the context
         // to retrieve an Android resource.
         ClassLoader classLoader = requireNonNull(CarAppApiLevels.class.getClassLoader());

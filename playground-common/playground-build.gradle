@@ -17,7 +17,7 @@
 import androidx.build.AndroidXPlaygroundRootPlugin
 import androidx.build.AndroidXRootPlugin
 
-// A generic build.gradle file for all playground projects that sets it up to use public artifacts.
+// A generic build.gradle.kts.kts.kts.kts.kts.kts.kts file for all playground projects that sets it up to use public artifacts.
 // See README.md for details
 
 buildscript {

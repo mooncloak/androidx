@@ -32,7 +32,7 @@ plugins {
 }
 
 repackage {
-    // Must match what is in datastore/datastore-preferences-external-protobuf/build.gradle
+    // Must match what is in datastore/datastore-preferences-external-protobuf/build.gradle.kts.kts.kts.kts.kts.kts.kts
     addRelocation {
         sourcePackage = "com.google.protobuf"
         targetPackage =  "androidx.datastore.preferences.protobuf"

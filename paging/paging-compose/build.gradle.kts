@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 The Android Open Source Project
+ * Copyright 2020 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,35 +21,40 @@
  * Please use that script when creating a new project, rather than copying an existing project and
  * modifying its settings.
  */
-import androidx.build.LibraryType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("AndroidXPlugin")
     id("com.android.library")
-    id("kotlin-android")
+    id("org.jetbrains.compose")
+    id("org.jetbrains.kotlin.plugin.compose")
+    id("androidx.multiplatform")
+    id("androidx.publish")
 }
 
-android {
-    namespace "androidx.paging.runtime"
-}
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(libs.kotlinStdlib)
+                api("androidx.compose.foundation:foundation:1.5.0")
+                api(project(":paging:paging-common"))
+                api("androidx.compose.runtime:runtime:1.5.0")
+            }
+        }
 
-dependencies {
-    api(project(":paging:paging-common"))
-    // Ensure that the -ktx dependency graph mirrors the Java dependency graph
-    api(project(":paging:paging-common-ktx"))
+        val jvmMain by getting {
+            dependsOn(commonMain)
+        }
 
-    api("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    api("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
-    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    api("androidx.recyclerview:recyclerview:1.2.1")
-    api(libs.kotlinStdlib)
-    api(libs.kotlinCoroutinesAndroid)
-    implementation("androidx.core:core-ktx:1.7.0")
+        val androidMain by getting {
+            dependsOn(jvmMain)
+        }
+    }
 }
 
 android {
     compileSdk = LibraryConstants.Android.compileSdkVersion
-    namespace = "androidx.paging-runtime"
+    namespace = "androidx.paging-compose"
 
     defaultConfig {
         minSdk = LibraryConstants.Android.minSdkVersion

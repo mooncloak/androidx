@@ -55,8 +55,8 @@ sedInPlace "s/androidGradlePlugin = \".*/androidGradlePlugin = \"$AGP_VERSION\"/
 sedInPlace "s/androidLint = \".*/androidLint = \"$LINT_VERSION\"/g" gradle/libs.versions.toml
 sedInPlace "s/androidStudio = \".*/androidStudio = \"$STUDIO_VERSION\"/g" gradle/libs.versions.toml
 
-# update settings.gradle -- don't match the line with :$agpOverride
-sedInPlace "s/com.android.settings:com.android.settings.gradle.plugin:[^$][0-9a-z\.\-]*/com.android.settings:com.android.settings.gradle.plugin:$AGP_VERSION/g" settings.gradle
+# update settings.gradle.kts -- don't match the line with :$agpOverride
+sedInPlace "s/com.android.settings:com.android.settings.gradle.plugin:[^$][0-9a-z\.\-]*/com.android.settings:com.android.settings.gradle.plugin:$AGP_VERSION/g" settings.gradle.kts
 
 # Pull all UTP artifacts for ADT version
 ADT_VERSION=${3:-$LINT_VERSION}

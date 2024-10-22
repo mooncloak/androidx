@@ -38,12 +38,12 @@ plugins {
 }
 
 repackage {
-    // Must match what is in room/room-external-antlr/build.gradle
+    // Must match what is in room/room-external-antlr/build.gradle.kts.kts.kts.kts.kts.kts.kts
     addRelocation {
         sourcePackage = "org.antlr"
         targetPackage = "androidx.room.jarjarred.org.antlr"
     }
-    // Must match what is in room/room-external-antlr/build.gradle
+    // Must match what is in room/room-external-antlr/build.gradle.kts.kts.kts.kts.kts.kts.kts
     addRelocation {
         sourcePackage = "org.stringtemplate"
         targetPackage =  "androidx.room.jarjarred.org.stringtemplate"

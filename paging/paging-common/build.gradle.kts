@@ -21,35 +21,57 @@
  * Please use that script when creating a new project, rather than copying an existing project and
  * modifying its settings.
  */
-import androidx.build.LibraryType
+
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("AndroidXPlugin")
     id("com.android.library")
-    id("kotlin-android")
+    id("androidx.multiplatform")
+    id("androidx.publish")
 }
 
-android {
-    namespace "androidx.paging.runtime"
-}
+kotlin {
+    sourceSets {
+        val commonMain by getting {
+            dependencies {
+                api(libs.kotlinStdlib)
+                api(libs.kotlinCoroutinesCore)
+                api("androidx.annotation:annotation:1.8.1")
+            }
+        }
 
-dependencies {
-    api(project(":paging:paging-common"))
-    // Ensure that the -ktx dependency graph mirrors the Java dependency graph
-    api(project(":paging:paging-common-ktx"))
+        val commonJvmAndroidMain by creating {
+            dependsOn(commonMain)
 
-    api("androidx.lifecycle:lifecycle-livedata-ktx:2.8.3")
-    api("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
-    api("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.3")
-    api("androidx.recyclerview:recyclerview:1.2.1")
-    api(libs.kotlinStdlib)
-    api(libs.kotlinCoroutinesAndroid)
-    implementation("androidx.core:core-ktx:1.7.0")
+            dependencies {
+                api("androidx.arch.core:core-common:2.2.0")
+            }
+        }
+
+        val jvmMain by getting {
+            dependsOn(commonJvmAndroidMain)
+        }
+
+        val androidMain by getting {
+            dependsOn(commonJvmAndroidMain)
+        }
+
+        val nativeMain by getting {
+            dependsOn(commonMain)
+            dependencies {
+                implementation(libs.atomicFu)
+            }
+        }
+
+        val linuxMain by getting {
+            dependsOn(nativeMain)
+        }
+    }
 }
 
 android {
     compileSdk = LibraryConstants.Android.compileSdkVersion
-    namespace = "androidx.paging-runtime"
+    namespace = "androidx.paging-common"
 
     defaultConfig {
         minSdk = LibraryConstants.Android.minSdkVersion
